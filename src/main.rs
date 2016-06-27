@@ -11,7 +11,7 @@ fn main() {
 
 }
 
-/// Game struct. Knows about itself, the grid, and both bikes. Main engine!
+/// Game struct. Knows about itself, the grid, and both bikes. Main engine! ***********************
 
 struct Game {
     grid: Grid,
@@ -57,7 +57,7 @@ impl Game {
     }
 }
 
-/// Grid struct. Knows about itself and the two bikes.
+/// Grid struct. Knows about itself and the two bikes. ********************************************
 
 struct Grid {
     x_max: i16,
@@ -92,7 +92,7 @@ impl Grid {
     }
 }
 
-/// Bike Struct. Knows about itself and the Grid.
+/// Bike Struct. Knows about itself and the Grid. *************************************************
 
 struct Bike {
     x: i16,
@@ -167,18 +167,14 @@ fn game_can_take_user_input() {
                              Bike::new(800, 400, "bike_two".to_string()));
 
     game.bike_one_right();
-
     assert_eq!(game.bike_one.x, 1);
 
     game.bike_one_left();
-
     assert_eq!(game.bike_one.x, 0);
 
     game.bike_two_left();
-
     assert_eq!(game.bike_two.x, 799);
 
     game.bike_two_right();
-
     assert_eq!(game.bike_two.x, 800);
 }
