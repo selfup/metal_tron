@@ -1,4 +1,3 @@
-#[allow(unused_variables)]
 fn main() {
     let mut game = Game::new(Grid::new(800, 0, 800, 0),
                              Bike::new(0, 400, "bike_one".to_string()),
@@ -11,6 +10,8 @@ fn main() {
     game.bike_two_right();
 
 }
+
+/// Game struct. Knows about itself, the grid, and both bikes. Main engine!
 
 struct Game {
     grid: Grid,
@@ -44,17 +45,19 @@ impl Game {
     fn bike_two_right(&mut self) {
         self.bike_two.move_right();
         self.bike_two.grid_check(&self.grid);
-        self.grid.collect_bike_one_trail(&self.bike_one);
+        self.grid.collect_bike_two_trail(&self.bike_two);
         self.bike_two.print_properties();
     }
 
     fn bike_two_left(&mut self) {
         self.bike_two.move_left();
         self.bike_two.grid_check(&self.grid);
-        self.grid.collect_bike_one_trail(&self.bike_one);
+        self.grid.collect_bike_two_trail(&self.bike_two);
         self.bike_two.print_properties();
     }
 }
+
+/// Grid struct. Knows about itself and the two bikes.
 
 struct Grid {
     x_max: i16,
@@ -83,7 +86,13 @@ impl Grid {
     fn collect_bike_one_trail(&mut self, bike_one: &Bike) {
         self.trails.push((bike_one.x, bike_one.y));
     }
+
+    fn collect_bike_two_trail(&mut self, bike_two: &Bike) {
+        self.trails.push((bike_two.x, bike_two.y));
+    }
 }
+
+/// Bike Struct. Knows about itself and the Grid.
 
 struct Bike {
     x: i16,
@@ -130,6 +139,8 @@ impl Bike {
         }
     }
 }
+
+// Integration testing ****************************************************************************
 
 #[test]
 fn game_can_intialize_with_initlalized_bikes_and_grid() {
