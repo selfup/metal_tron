@@ -1,58 +1,44 @@
 fn main() {
-    let mut demo = Demo::new();
+    let mut bike_one = Bike::init();
 
-    demo.print_properties();
+    bike_one.print_properties();
 
-    demo.up_to(1001);
+    bike_one.move_right();
+
+    bike_one.print_properties();
 }
 
-struct DemoStats {
-    init: &'static str,
-    modified: &'static str,
-    finalized: &'static str,
+struct Grid {
+    
 }
 
-impl DemoStats {
-    fn new() -> DemoStats {
-        DemoStats {
-            init: "initialized",
-            modified: "modified",
-            finalized: "finalized",
-        }
-    }
-}
-
-struct Demo {
-    id: i16,
+struct Bike {
+    x: i32,
+    y: i32,
     status: &'static str,
 }
 
-impl Demo {
+impl Bike {
+    fn init() -> Bike {
+        Bike {
+            x: 0,
+            y: 0,
+            status: "alive",
+        }
+    }
+
     fn print_properties(&self) {
-        println!("Demo id: {}, Demo status: {}", self.id, self.status);
+        println!("Bike coords: x -> {}, y -> {}, Bike status: {}",
+                 self.x,
+                 self.y,
+                 self.status);
     }
 
-    fn up_to(&mut self, limit: i16) {
-        for i in 1..limit {
-            match i {
-                1000 => {
-                    self.status = DemoStats::new().finalized;
-                    self.id = i;
-                    self.print_properties();
-                }
-                _ => {
-                    self.status = DemoStats::new().modified;
-                    self.id = i;
-                    self.print_properties();
-                }
-            };
-        }
+    fn move_right(&mut self) {
+        self.x += 1;
     }
 
-    fn new() -> Demo {
-        Demo {
-            id: 0,
-            status: DemoStats::new().init,
-        }
+    fn status_check(&mut self, grid: Grid) {
+
     }
 }
