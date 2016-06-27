@@ -130,3 +130,44 @@ impl Bike {
         }
     }
 }
+
+#[test]
+fn game_can_intialize_with_initlalized_bikes_and_grid() {
+    let game = Game::new(Grid::new(800, 0, 800, 0),
+                         Bike::new(0, 400, "bike_one".to_string()),
+                         Bike::new(800, 400, "bike_two".to_string()));
+
+    assert_eq!(game.grid.x_max, 800);
+    assert_eq!(game.grid.x_min, 0);
+    assert_eq!(game.grid.y_max, 800);
+    assert_eq!(game.grid.y_min, 0);
+    assert_eq!(game.bike_one.x, 0);
+    assert_eq!(game.bike_one.y, 400);
+    assert_eq!(game.bike_two.x, 800);
+    assert_eq!(game.bike_two.y, 400);
+    assert_eq!(game.grid.trails[0], (0, 400));
+    assert_eq!(game.grid.trails[1], (800, 400));
+}
+
+#[test]
+fn game_can_take_user_input() {
+    let mut game = Game::new(Grid::new(800, 0, 800, 0),
+                             Bike::new(0, 400, "bike_one".to_string()),
+                             Bike::new(800, 400, "bike_two".to_string()));
+
+    game.bike_one_right();
+
+    assert_eq!(game.bike_one.x, 1);
+
+    game.bike_one_left();
+
+    assert_eq!(game.bike_one.x, 0);
+
+    game.bike_two_left();
+
+    assert_eq!(game.bike_two.x, 799);
+
+    game.bike_two_right();
+
+    assert_eq!(game.bike_two.x, 800);
+}
