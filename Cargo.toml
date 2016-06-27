@@ -1,0 +1,6 @@
+[package]
+name = "metal_tron"
+version = "0.1.0"
+authors = ["Regis <boudinot.regis@yahoo.com>"]
+
+[dependencies]
