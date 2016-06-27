@@ -1,3 +1,7 @@
+extern crate piston_window;
+
+use piston_window::*;
+
 fn main() {
     let mut game = Game::new(Grid::new(800, 0, 800, 0),
                              Bike::new(0, 400),
@@ -8,6 +12,20 @@ fn main() {
 
     game.bike_two_left();
     game.bike_two_right();
+
+    let mut window: PistonWindow = WindowSettings::new("Hello Piston!", [640, 480])
+        .exit_on_esc(true)
+        .build()
+        .unwrap();
+    while let Some(e) = window.next() {
+        window.draw_2d(&e, |c, g| {
+            clear([1.0; 4], g);
+            rectangle([1.0, 0.0, 0.0, 1.0], // red
+                      [0.0, 0.0, 100.0, 100.0],
+                      c.transform,
+                      g);
+        });
+    }
 }
 
 /// Game struct. Knows about itself, the grid, and both bikes. Main engine! ***********************
