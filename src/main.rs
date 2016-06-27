@@ -1,7 +1,7 @@
 fn main() {
     let mut game = Game::new(Grid::new(800, 0, 800, 0),
-                             Bike::new(0, 400, "bike_one".to_string()),
-                             Bike::new(800, 400, "bike_two".to_string()));
+                             Bike::new(0, 400),
+                             Bike::new(800, 400));
 
     game.bike_one_right();
     game.bike_one_left();
@@ -32,28 +32,24 @@ impl Game {
         self.bike_one.move_right();
         self.bike_one.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
-        self.bike_one.print_properties();
     }
 
     fn bike_one_left(&mut self) {
         self.bike_one.move_left();
         self.bike_one.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
-        self.bike_one.print_properties();
     }
 
     fn bike_two_right(&mut self) {
         self.bike_two.move_right();
         self.bike_two.grid_check(&self.grid);
         self.grid.collect_bike_two_trail(&self.bike_two);
-        self.bike_two.print_properties();
     }
 
     fn bike_two_left(&mut self) {
         self.bike_two.move_left();
         self.bike_two.grid_check(&self.grid);
         self.grid.collect_bike_two_trail(&self.bike_two);
-        self.bike_two.print_properties();
     }
 }
 
@@ -97,26 +93,11 @@ impl Grid {
 struct Bike {
     x: i16,
     y: i16,
-    name: String,
-    status: String,
 }
 
 impl Bike {
-    fn new(x: i16, y: i16, name: String) -> Bike {
-        Bike {
-            x: x,
-            y: y,
-            name: name,
-            status: "alive".to_string(),
-        }
-    }
-
-    fn print_properties(&self) {
-        println!("{name} coords: x -> {}, y -> {}, {name} status: {}",
-                 self.x,
-                 self.y,
-                 self.status,
-                 name = self.name);
+    fn new(x: i16, y: i16) -> Bike {
+        Bike { x: x, y: y }
     }
 
     fn move_right(&mut self) {
@@ -145,8 +126,8 @@ impl Bike {
 #[test]
 fn game_can_intialize_with_initlalized_bikes_and_grid() {
     let game = Game::new(Grid::new(800, 0, 800, 0),
-                         Bike::new(0, 400, "bike_one".to_string()),
-                         Bike::new(800, 400, "bike_two".to_string()));
+                         Bike::new(0, 400),
+                         Bike::new(800, 400));
 
     assert_eq!(game.grid.x_max, 800);
     assert_eq!(game.grid.x_min, 0);
@@ -163,8 +144,8 @@ fn game_can_intialize_with_initlalized_bikes_and_grid() {
 #[test]
 fn game_can_take_user_input() {
     let mut game = Game::new(Grid::new(800, 0, 800, 0),
-                             Bike::new(0, 400, "bike_one".to_string()),
-                             Bike::new(800, 400, "bike_two".to_string()));
+                             Bike::new(0, 400),
+                             Bike::new(800, 400));
 
     game.bike_one_right();
     assert_eq!(game.bike_one.x, 1);
