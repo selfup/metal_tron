@@ -1,20 +1,33 @@
 #[allow(unused_variables)]
 fn main() {
-    let grid = Grid::new(800, 800);
-    let mut bike_one = Bike::new(0, 0);
+    let mut game = Game::new(Grid::new(800, 800), Bike::new(0, 0));
 
-    bike_one.move_right();
-    bike_one.status_check(&grid);
-    bike_one.print_properties();
+    game.bike_one.move_right();
+    game.bike_one.status_check(&game.grid);
+    game.bike_one.print_properties();
 
     for i in 0..802 {
-        bike_one.move_right();
-        bike_one.status_check(&grid);
+        game.bike_one.move_right();
+        game.bike_one.status_check(&game.grid);
     }
 
-    bike_one.move_left();
-    bike_one.status_check(&grid);
-    bike_one.print_properties();
+    game.bike_one.move_left();
+    game.bike_one.status_check(&game.grid);
+    game.bike_one.print_properties();
+}
+
+struct Game {
+    grid: Grid,
+    bike_one: Bike,
+}
+
+impl Game {
+    fn new(grid: Grid, bike_one: Bike) -> Game {
+        Game {
+            grid: grid,
+            bike_one: bike_one,
+        }
+    }
 }
 
 struct Grid {
