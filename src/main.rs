@@ -8,7 +8,6 @@ fn main() {
 
     game.bike_two_left();
     game.bike_two_right();
-
 }
 
 /// Game struct. Knows about itself, the grid, and both bikes. Main engine! ***********************
