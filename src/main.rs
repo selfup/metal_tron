@@ -3,9 +3,9 @@ fn main() {
     let grid = Grid::new();
     let mut bike_one = Bike::new();
 
-    bike_one.print_properties();
     bike_one.move_right();
     bike_one.status_check(&grid);
+    bike_one.print_properties();
 
     for i in 0..802 {
         bike_one.move_right();
