@@ -6,11 +6,10 @@ fn main() {
 
     game.bike_one_right();
     game.bike_one_left();
-    game.bike_one.print_properties();
 
-    game.bike_two_right();
     game.bike_two_left();
-    game.bike_two.print_properties();
+    game.bike_two_right();
+
 }
 
 struct Game {
@@ -32,24 +31,28 @@ impl Game {
         self.bike_one.move_right();
         self.bike_one.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
+        self.bike_one.print_properties();
     }
 
     fn bike_one_left(&mut self) {
         self.bike_one.move_left();
         self.bike_one.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
+        self.bike_one.print_properties();
     }
 
     fn bike_two_right(&mut self) {
-        self.bike_one.move_right();
-        self.bike_one.grid_check(&self.grid);
+        self.bike_two.move_right();
+        self.bike_two.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
+        self.bike_two.print_properties();
     }
 
     fn bike_two_left(&mut self) {
-        self.bike_one.move_left();
-        self.bike_one.grid_check(&self.grid);
+        self.bike_two.move_left();
+        self.bike_two.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
+        self.bike_two.print_properties();
     }
 }
 
