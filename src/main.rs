@@ -1,7 +1,7 @@
 #[allow(unused_variables)]
 fn main() {
-    let grid = Grid::new();
-    let mut bike_one = Bike::new();
+    let grid = Grid::new(800, 800);
+    let mut bike_one = Bike::new(0, 0);
 
     bike_one.move_right();
     bike_one.status_check(&grid);
@@ -25,11 +25,11 @@ struct Grid {
 }
 
 impl Grid {
-    fn new() -> Grid {
+    fn new(x_max: i16, y_max: i16) -> Grid {
         Grid {
-            x_max: 800,
+            x_max: x_max,
             x_min: 0,
-            y_max: 800,
+            y_max: y_max,
             y_min: 0,
         }
     }
@@ -42,10 +42,10 @@ struct Bike {
 }
 
 impl Bike {
-    fn new() -> Bike {
+    fn new(x: i16, y: i16) -> Bike {
         Bike {
-            x: 0,
-            y: 0,
+            x: x,
+            y: y,
             status: "alive",
         }
     }
