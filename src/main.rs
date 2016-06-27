@@ -138,6 +138,7 @@ fn game_can_intialize_with_initlalized_bikes_and_grid() {
     assert_eq!(game.bike_two.y, 400);
     assert_eq!(game.grid.trails[0], (0, 400));
     assert_eq!(game.grid.trails[1], (800, 400));
+    assert_eq!(game.grid.trails.len(), 2);
 }
 
 #[test]
