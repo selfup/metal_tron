@@ -5,9 +5,14 @@ fn main() {
 
     game.bike_one_right();
     game.bike_one_left();
+    game.bike_one_up();
+    game.bike_one_down();
 
     game.bike_two_left();
     game.bike_two_right();
+    game.bike_two_up();
+    game.bike_two_down();
+
 }
 
 /// Game struct. Knows about itself, the grid, and both bikes. Main engine! ***********************
@@ -39,6 +44,18 @@ impl Game {
         self.grid.collect_bike_one_trail(&self.bike_one);
     }
 
+    fn bike_one_up(&mut self) {
+        self.bike_one.move_up();
+        self.bike_one.grid_check(&self.grid);
+        self.grid.collect_bike_one_trail(&self.bike_one);
+    }
+
+    fn bike_one_down(&mut self) {
+        self.bike_one.move_down();
+        self.bike_one.grid_check(&self.grid);
+        self.grid.collect_bike_one_trail(&self.bike_one);
+    }
+
     fn bike_two_right(&mut self) {
         self.bike_two.move_right();
         self.bike_two.grid_check(&self.grid);
@@ -47,6 +64,18 @@ impl Game {
 
     fn bike_two_left(&mut self) {
         self.bike_two.move_left();
+        self.bike_two.grid_check(&self.grid);
+        self.grid.collect_bike_two_trail(&self.bike_two);
+    }
+
+    fn bike_two_up(&mut self) {
+        self.bike_two.move_up();
+        self.bike_two.grid_check(&self.grid);
+        self.grid.collect_bike_two_trail(&self.bike_two);
+    }
+
+    fn bike_two_down(&mut self) {
+        self.bike_two.move_down();
         self.bike_two.grid_check(&self.grid);
         self.grid.collect_bike_two_trail(&self.bike_two);
     }
@@ -107,6 +136,14 @@ impl Bike {
         self.x -= 1;
     }
 
+    fn move_up(&mut self) {
+        self.y += 1;
+    }
+
+    fn move_down(&mut self) {
+        self.y -= 1;
+    }
+
     fn grid_check(&mut self, grid: &Grid) {
         if self.x > grid.x_max {
             self.x = grid.x_min;
@@ -153,9 +190,21 @@ fn game_can_take_user_input() {
     game.bike_one_left();
     assert_eq!(game.bike_one.x, 0);
 
+    game.bike_one_up();
+    assert_eq!(game.bike_one.y, 401);
+
+    game.bike_one_down();
+    assert_eq!(game.bike_one.y, 400);
+
     game.bike_two_left();
     assert_eq!(game.bike_two.x, 799);
 
     game.bike_two_right();
     assert_eq!(game.bike_two.x, 800);
+
+    game.bike_two_up();
+    assert_eq!(game.bike_two.y, 401);
+
+    game.bike_two_down();
+    assert_eq!(game.bike_two.y, 400);
 }
