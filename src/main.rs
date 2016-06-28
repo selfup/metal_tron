@@ -36,48 +36,56 @@ impl Game {
         self.bike_one.move_right();
         self.bike_one.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
+        self.bike_one.alive_or_not(&self.grid);
     }
 
     fn bike_one_left(&mut self) {
         self.bike_one.move_left();
         self.bike_one.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
+        self.bike_one.alive_or_not(&self.grid);
     }
 
     fn bike_one_up(&mut self) {
         self.bike_one.move_up();
         self.bike_one.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
+        self.bike_one.alive_or_not(&self.grid);
     }
 
     fn bike_one_down(&mut self) {
         self.bike_one.move_down();
         self.bike_one.grid_check(&self.grid);
         self.grid.collect_bike_one_trail(&self.bike_one);
+        self.bike_one.alive_or_not(&self.grid);
     }
 
     fn bike_two_right(&mut self) {
         self.bike_two.move_right();
         self.bike_two.grid_check(&self.grid);
         self.grid.collect_bike_two_trail(&self.bike_two);
+        self.bike_two.alive_or_not(&self.grid);
     }
 
     fn bike_two_left(&mut self) {
         self.bike_two.move_left();
         self.bike_two.grid_check(&self.grid);
         self.grid.collect_bike_two_trail(&self.bike_two);
+        self.bike_two.alive_or_not(&self.grid);
     }
 
     fn bike_two_up(&mut self) {
         self.bike_two.move_up();
         self.bike_two.grid_check(&self.grid);
         self.grid.collect_bike_two_trail(&self.bike_two);
+        self.bike_two.alive_or_not(&self.grid);
     }
 
     fn bike_two_down(&mut self) {
         self.bike_two.move_down();
         self.bike_two.grid_check(&self.grid);
         self.grid.collect_bike_two_trail(&self.bike_two);
+        self.bike_two.alive_or_not(&self.grid);
     }
 }
 
@@ -121,11 +129,16 @@ impl Grid {
 struct Bike {
     x: i16,
     y: i16,
+    alive: bool,
 }
 
 impl Bike {
     fn new(x: i16, y: i16) -> Bike {
-        Bike { x: x, y: y }
+        Bike {
+            x: x,
+            y: y,
+            alive: true,
+        }
     }
 
     fn move_right(&mut self) {
@@ -142,6 +155,14 @@ impl Bike {
 
     fn move_down(&mut self) {
         self.y -= 1;
+    }
+
+    fn alive_or_not(&mut self, grid: &Grid) {
+        for i in &grid.trails {
+            if (self.x, self.y).0 == i.0 && (self.x, self.y).1 == i.1 {
+                self.alive = false;
+            }
+        }
     }
 
     fn grid_check(&mut self, grid: &Grid) {
