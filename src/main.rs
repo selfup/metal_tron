@@ -229,3 +229,14 @@ fn game_can_take_user_input() {
     game.bike_two_down();
     assert_eq!(game.bike_two.y, 400);
 }
+
+#[test]
+fn bike_can_detect_other_bikes_and_bike_trails() {
+    let mut game = Game::new(Grid::new(800, 0, 800, 0),
+                             Bike::new(0, 400),
+                             Bike::new(800, 400));
+
+    game.bike_one_left();
+    assert_eq!(game.bike_one.x, 800);
+    assert_eq!(game.bike_one.alive, false);
+}
