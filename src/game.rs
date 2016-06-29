@@ -20,58 +20,48 @@ impl Game {
 
     pub fn bike_one_right(&mut self) {
         self.bike_one.move_right();
-        self.bike_one.grid_check(&self.grid);
-        self.grid.collect_bike_one_trail(&self.bike_one);
-        self.bike_one.alive_or_not(&self.grid);
+        self.all_checks(self.grid, self.bike_two);
     }
 
     pub fn bike_one_left(&mut self) {
         self.bike_one.move_left();
-        self.bike_one.grid_check(&self.grid);
-        self.grid.collect_bike_one_trail(&self.bike_one);
-        self.bike_one.alive_or_not(&self.grid);
+        self.all_checks(self.grid, self.bike_two);
     }
 
     pub fn bike_one_up(&mut self) {
         self.bike_one.move_up();
-        self.bike_one.grid_check(&self.grid);
-        self.grid.collect_bike_one_trail(&self.bike_one);
-        self.bike_one.alive_or_not(&self.grid);
+        self.all_checks(self.grid, self.bike_two);
     }
 
     pub fn bike_one_down(&mut self) {
         self.bike_one.move_down();
-        self.bike_one.grid_check(&self.grid);
-        self.grid.collect_bike_one_trail(&self.bike_one);
-        self.bike_one.alive_or_not(&self.grid);
+        self.all_checks(self.grid, self.bike_two);
     }
 
     pub fn bike_two_right(&mut self) {
         self.bike_two.move_right();
-        self.bike_two.grid_check(&self.grid);
-        self.grid.collect_bike_two_trail(&self.bike_two);
-        self.bike_two.alive_or_not(&self.grid);
+        self.all_checks(self.grid, self.bike_two);
     }
 
     pub fn bike_two_left(&mut self) {
         self.bike_two.move_left();
-        self.bike_two.grid_check(&self.grid);
-        self.grid.collect_bike_two_trail(&self.bike_two);
-        self.bike_two.alive_or_not(&self.grid);
+        self.all_checks(self.grid, self.bike_two);
     }
 
     pub fn bike_two_up(&mut self) {
         self.bike_two.move_up();
-        self.bike_two.grid_check(&self.grid);
-        self.grid.collect_bike_two_trail(&self.bike_two);
-        self.bike_two.alive_or_not(&self.grid);
+        self.all_checks(self.grid, self.bike_two);
     }
 
     pub fn bike_two_down(&mut self) {
         self.bike_two.move_down();
-        self.bike_two.grid_check(&self.grid);
-        self.grid.collect_bike_two_trail(&self.bike_two);
-        self.bike_two.alive_or_not(&self.grid);
+        self.all_checks(self.grid, self.bike_two);
+    }
+
+    fn all_checks(&self, grid: Grid, bike: Bike) {
+        bike.grid_check(&grid);
+        grid.collect_bike_one_trail(&bike);
+        bike.alive_or_not(&grid);
     }
 }
 
