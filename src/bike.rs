@@ -53,3 +53,57 @@ impl Bike {
         }
     }
 }
+
+#[test]
+fn it_initializes_properly() {
+    let bike = Bike::new(0, 400);
+
+    assert_eq!(bike.x, 0);
+    assert_eq!(bike.y, 400);   
+}
+
+#[test]
+fn it_can_move_around() {
+    let mut bike = Bike::new(0, 400);
+
+    bike.move_right();
+    assert_eq!(bike.x, 1);
+
+    bike.move_left();
+    assert_eq!(bike.x, 0);
+
+    bike.move_up();
+    assert_eq!(bike.y, 401);
+
+    bike.move_down();
+    assert_eq!(bike.y, 400);
+}
+
+#[test]
+fn it_can_check_where_it_needs_to_be_on_the_grid() {
+    let mut bike = Bike::new(0, 400);
+    let grid = Grid::new(800, 0, 800 ,0);
+
+    bike.move_left();
+    bike.grid_check(&grid);
+    
+    assert_eq!(bike.x, 800);
+}
+
+#[test]
+fn it_knows_if_it_dies() {
+    let mut bike = Bike::new(0, 400);
+    let grid = Grid::new(800, 0, 800 ,0);
+
+    bike.move_left();
+    bike.grid_check(&grid);
+    
+    assert_eq!(bike.alive, true);
+    assert_eq!(bike.x, 800);
+
+    bike.move_right();
+    bike.grid_check(&grid);
+    bike.alive_or_not(&grid);
+
+    assert_eq!(bike.alive, false);
+}
