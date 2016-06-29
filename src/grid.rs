@@ -26,18 +26,14 @@ impl Grid {
         }
     }
 
-    pub fn collect_bike_one_trail(&mut self, bike_one: &Bike) {
-        self.trails.push((bike_one.x, bike_one.y));
-    }
-
-    pub fn collect_bike_two_trail(&mut self, bike_two: &Bike) {
-        self.trails.push((bike_two.x, bike_two.y));
+    pub fn collect_bike_trail(&mut self, bike: &Bike) {
+        self.trails.push((bike.x, bike.y));
     }
 }
 
 #[test]
 fn it_intializes_properly() {
-    let grid = Grid::new(800, 0, 800 ,0);
+    let grid = Grid::new(800, 0, 800, 0);
 
     assert_eq!(grid.x_max, 800);
     assert_eq!(grid.x_min, 0);
@@ -49,16 +45,16 @@ fn it_intializes_properly() {
 fn it_can_collect_bike_trails() {
     let mut bike_one = Bike::new(0, 400);
     let mut bike_two = Bike::new(0, 400);
-    let mut grid = Grid::new(800, 0, 800 ,0);
+    let mut grid = Grid::new(800, 0, 800, 0);
 
     assert_eq!(grid.trails[0], (0, 400));
     assert_eq!(grid.trails[1], (800, 400));
 
     bike_one.move_right();
-    grid.collect_bike_one_trail(&bike_one);
+    grid.collect_bike_trail(&bike_one);
 
     bike_two.move_right();
-    grid.collect_bike_two_trail(&bike_two);
+    grid.collect_bike_trail(&bike_two);
 
     assert_eq!(grid.trails[2], (1, 400));
     assert_eq!(grid.trails[3], (1, 400));

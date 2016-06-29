@@ -1,6 +1,7 @@
 mod game;
 mod grid;
 mod bike;
+mod check;
 
 use game::*;
 use grid::*;
