@@ -58,7 +58,7 @@ impl Game {
         self.all_checks(self.grid, self.bike_two);
     }
 
-    fn all_checks(&self, mut grid: Grid, mut bike: Bike) {
+    fn all_checks(&mut self, mut grid: Grid, mut bike: Bike) {
         bike.grid_check(&grid);
         grid.collect_bike_one_trail(&bike);
         bike.alive_or_not(&grid);
