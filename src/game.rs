@@ -58,7 +58,7 @@ impl Game {
         self.all_checks(self.grid, self.bike_two);
     }
 
-    fn all_checks(&self, grid: Grid, bike: Bike) {
+    fn all_checks(&self, mut grid: Grid, mut bike: Bike) {
         bike.grid_check(&grid);
         grid.collect_bike_one_trail(&bike);
         bike.alive_or_not(&grid);
@@ -124,7 +124,7 @@ fn it_can_detect_other_bikes_and_figure_out_if_it_is_alive_or_not() {
     assert_eq!(game.bike_one.alive, true);
 
     game.bike_one_left();
-    
+
     assert_eq!(game.bike_one.x, 800);
     assert_eq!(game.bike_one.alive, false);
 }
