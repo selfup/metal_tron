@@ -1,6 +1,6 @@
 use grid::*;
 
-/// Bike Struct. Knows about itself and the Grid. *************************************************
+/// Bike Struct. Knows about itself and Grid. ****************************************************
 
 pub struct Bike {
     pub x: i16,
@@ -59,7 +59,7 @@ fn it_initializes_properly() {
     let bike = Bike::new(0, 400);
 
     assert_eq!(bike.x, 0);
-    assert_eq!(bike.y, 400);   
+    assert_eq!(bike.y, 400);
 }
 
 #[test]
@@ -82,22 +82,22 @@ fn it_can_move_around() {
 #[test]
 fn it_can_check_where_it_needs_to_be_on_the_grid() {
     let mut bike = Bike::new(0, 400);
-    let grid = Grid::new(800, 0, 800 ,0);
+    let grid = Grid::new(800, 0, 800, 0);
 
     bike.move_left();
     bike.grid_check(&grid);
-    
+
     assert_eq!(bike.x, 800);
 }
 
 #[test]
 fn it_knows_if_it_dies() {
     let mut bike = Bike::new(0, 400);
-    let grid = Grid::new(800, 0, 800 ,0);
+    let grid = Grid::new(800, 0, 800, 0);
 
     bike.move_left();
     bike.grid_check(&grid);
-    
+
     assert_eq!(bike.alive, true);
     assert_eq!(bike.x, 800);
 

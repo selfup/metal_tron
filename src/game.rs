@@ -2,8 +2,7 @@ use check::*;
 use grid::*;
 use bike::*;
 
-
-/// Game struct. Knows about itself, the grid, and both bikes. Main engine! ***********************
+/// Game struct. Knows about itself, Grid, and Bike. Main engine! ********************************
 
 pub struct Game {
     pub grid: Grid,

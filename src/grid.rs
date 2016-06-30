@@ -1,6 +1,6 @@
 use bike::*;
 
-/// Grid struct. Knows about itself and the two bikes. ********************************************
+/// Grid struct. Knows about itself and Bike. ****************************************************
 
 pub struct Grid {
     pub x_max: i16,
